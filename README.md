@@ -3,3 +3,5 @@
 * spring-boot
 * gradle
 * mysql
+
+先写个main method吧
