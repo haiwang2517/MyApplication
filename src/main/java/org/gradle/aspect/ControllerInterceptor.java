@@ -1,7 +1,6 @@
 package org.gradle.aspect;
 
 import java.util.Enumeration;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +18,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 public class ControllerInterceptor {
 	
 	// 设置aop的切入点
-	@Pointcut("execution(* org.gradle.a..*.*(..))")  
+	@Pointcut("execution(* org.gradle.controller..*.*(..))")  
 	public void executeService(){  
 
 	}
@@ -28,9 +27,9 @@ public class ControllerInterceptor {
 	public void doBeforeAdvice(JoinPoint joinPoint ){
 		
 		System.out.println("www");
-		
+
 		//获取目标方法的参数信息  
-	    Object[] obj = joinPoint.getArgs();  
+//	    Object[] obj = joinPoint.getArgs();  
 	    //AOP代理类的信息  
 	    joinPoint.getThis();  
 	    //代理的目标对象  

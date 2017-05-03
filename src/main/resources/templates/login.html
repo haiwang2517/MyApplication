@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="utf-8"></meta>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+	    <meta name="description" content=""></meta>
+	    <meta name="author" content=""></meta>
+    
+        <title>登录界面</title>
+        
+        <!-- Bootstrap core CSS -->
+    	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    	
+    	<!-- Custom styles for this template -->
+    	<link href="bootstrap/css/login/signin.css" rel="stylesheet"></link>
+    	
+    </head>
+    <body>
+    
+    
+    <div class="container">
+
+      <form class="form-signin" th:action="@{/login}" method="post" >
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">userName</label>
+        <input type="text" id="inputEmail" class="form-control"  name="username" placeholder="Email address"  required="required" autofocus="autofocus"></input>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control"  name="password" placeholder="Password"  required="required"></input>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me</input>
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div> <!-- /container -->
+    
+    
+        <div th:if="${param.error}">
+            用户名或密码错
+        </div>
+        <div th:if="${param.logout}">
+            您已注销成功
+        </div>
+        
+        <!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	    <script src="bootstrap/js/assets/ie10-viewport-bug-workaround.js"></script>
+    
+    </body>
+</html>
