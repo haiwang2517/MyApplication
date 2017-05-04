@@ -17,7 +17,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 @Component
 public class ControllerInterceptor {
 	
-	// ÉèÖÃaopµÄÇĞÈëµã
+	// è®¾ç½®aopçš„åˆ‡å…¥ç‚¹
 	@Pointcut("execution(* org.gradle.controller..*.*(..))")  
 	public void executeService(){  
 
@@ -28,30 +28,30 @@ public class ControllerInterceptor {
 		
 		System.out.println("www");
 
-		//»ñÈ¡Ä¿±ê·½·¨µÄ²ÎÊıĞÅÏ¢  
+		//è·å–ç›®æ ‡æ–¹æ³•çš„å‚æ•°ä¿¡æ¯  
 //	    Object[] obj = joinPoint.getArgs();  
-	    //AOP´úÀíÀàµÄĞÅÏ¢  
+	    //AOPä»£ç†ç±»çš„ä¿¡æ¯  
 	    joinPoint.getThis();  
-	    //´úÀíµÄÄ¿±ê¶ÔÏó  
+	    //ä»£ç†çš„ç›®æ ‡å¯¹è±¡  
 	    joinPoint.getTarget();  
-	    //ÓÃµÄ×î¶à Í¨ÖªµÄÇ©Ãû  
+	    //ç”¨çš„æœ€å¤š é€šçŸ¥çš„ç­¾å  
 	    Signature signature = joinPoint.getSignature();  
-	    //´úÀíµÄÊÇÄÄÒ»¸ö·½·¨  
+	    //ä»£ç†çš„æ˜¯å“ªä¸€ä¸ªæ–¹æ³•  
 	    System.out.println(signature.getName());  
-	    //AOP´úÀíÀàµÄÃû×Ö  
+	    //AOPä»£ç†ç±»çš„åå­—  
 	    System.out.println(signature.getDeclaringTypeName());  
-	    //AOP´úÀíÀàµÄÀà£¨class£©ĞÅÏ¢  
+	    //AOPä»£ç†ç±»çš„ç±»ï¼ˆclassï¼‰ä¿¡æ¯  
 	    signature.getDeclaringType();  
-	    //»ñÈ¡RequestAttributes  
+	    //è·å–RequestAttributes  
 	    RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();  
-	    //´Ó»ñÈ¡RequestAttributesÖĞ»ñÈ¡HttpServletRequestµÄĞÅÏ¢  
+	    //ä»è·å–RequestAttributesä¸­è·å–HttpServletRequestçš„ä¿¡æ¯  
 	    HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);  
-	    //Èç¹ûÒª»ñÈ¡SessionĞÅÏ¢µÄ»°£¬¿ÉÒÔÕâÑùĞ´£º  
+	    //å¦‚æœè¦è·å–Sessionä¿¡æ¯çš„è¯ï¼Œå¯ä»¥è¿™æ ·å†™ï¼š  
 	    //HttpSession session = (HttpSession) requestAttributes.resolveReference(RequestAttributes.REFERENCE_SESSION);  
 	    Enumeration<String> enumeration = request.getParameterNames();  
 	    while (enumeration.hasMoreElements()){  
 	        String parameter = enumeration.nextElement(); 
-	        System.out.println("²ÎÊı:"+parameter);
+	        System.out.println("å‚æ•°:"+parameter);
 	    }  
 	}
 	

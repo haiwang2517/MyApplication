@@ -50,7 +50,7 @@ public class ResultDTO<T> implements Serializable {
 	public void success( T content){
 		this.content = content;
 		this.code="100";
-		this.message="²Ù×÷³É¹¦";
+		this.message="æ“ä½œæˆåŠŸ";
 	}
 	
 	

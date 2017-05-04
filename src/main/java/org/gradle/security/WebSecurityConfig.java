@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-				.antMatchers("/bootstrap/**/*","/").permitAll()
+				.antMatchers("/bootstrap/**/*","/signlogin","/").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -33,12 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll();
 		
 		/*
-		 Í¨¹ı@EnableWebSecurity×¢½â¿ªÆôSpring SecurityµÄ¹¦ÄÜ
-		¼Ì³ĞWebSecurityConfigurerAdapter£¬²¢ÖØĞ´ËüµÄ·½·¨À´ÉèÖÃÒ»Ğ©web°²È«µÄÏ¸½Ú
-		configure(HttpSecurity http)·½·¨
-		Í¨¹ıauthorizeRequests()¶¨ÒåÄÄĞ©URLĞèÒª±»±£»¤¡¢ÄÄĞ©²»ĞèÒª±»±£»¤¡£ÀıÈçÒÔÉÏ´úÂëÖ¸¶¨ÁË/ºÍ/home²»ĞèÒªÈÎºÎÈÏÖ¤¾Í¿ÉÒÔ·ÃÎÊ£¬ÆäËûµÄÂ·¾¶¶¼±ØĞëÍ¨¹ıÉí·İÑéÖ¤¡£
-		Í¨¹ıformLogin()¶¨Òåµ±ĞèÒªÓÃ»§µÇÂ¼Ê±ºò£¬×ªµ½µÄµÇÂ¼Ò³Ãæ¡£
-		configureGlobal(AuthenticationManagerBuilder auth)·½·¨£¬ÔÚÄÚ´æÖĞ´´½¨ÁËÒ»¸öÓÃ»§£¬¸ÃÓÃ»§µÄÃû³ÆÎªuser£¬ÃÜÂëÎªpassword£¬ÓÃ»§½ÇÉ«ÎªUSER¡£ 
+		 é€šè¿‡@EnableWebSecurityæ³¨è§£å¼€å¯Spring Securityçš„åŠŸèƒ½
+		ç»§æ‰¿WebSecurityConfigurerAdapterï¼Œå¹¶é‡å†™å®ƒçš„æ–¹æ³•æ¥è®¾ç½®ä¸€äº›webå®‰å…¨çš„ç»†èŠ‚
+		configure(HttpSecurity http)æ–¹æ³•
+		é€šè¿‡authorizeRequests()å®šä¹‰å“ªäº›URLéœ€è¦è¢«ä¿æŠ¤ã€å“ªäº›ä¸éœ€è¦è¢«ä¿æŠ¤ã€‚ä¾‹å¦‚ä»¥ä¸Šä»£ç æŒ‡å®šäº†/å’Œ/homeä¸éœ€è¦ä»»ä½•è®¤è¯å°±å¯ä»¥è®¿é—®ï¼Œå…¶ä»–çš„è·¯å¾„éƒ½å¿…é¡»é€šè¿‡èº«ä»½éªŒè¯ã€‚
+		é€šè¿‡formLogin()å®šä¹‰å½“éœ€è¦ç”¨æˆ·ç™»å½•æ—¶å€™ï¼Œè½¬åˆ°çš„ç™»å½•é¡µé¢ã€‚
+		configureGlobal(AuthenticationManagerBuilder auth)æ–¹æ³•ï¼Œåœ¨å†…å­˜ä¸­åˆ›å»ºäº†ä¸€ä¸ªç”¨æˆ·ï¼Œè¯¥ç”¨æˆ·çš„åç§°ä¸ºuserï¼Œå¯†ç ä¸ºpasswordï¼Œç”¨æˆ·è§’è‰²ä¸ºUSERã€‚ 
 		*/
 		
 	}

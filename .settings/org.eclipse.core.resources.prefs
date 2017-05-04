@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/org/gradle/aspect/ControllerInterceptor.java=UTF-8
+encoding//src/main/java/org/gradle/comm/ResultDTO.java=UTF-8
+encoding//src/main/java/org/gradle/controller/PeopleController.java=UTF-8
+encoding//src/main/java/org/gradle/controller/UserController.java=UTF-8
+encoding//src/main/java/org/gradle/security/WebSecurityConfig.java=UTF-8
+encoding/<project>=UTF-8
 encoding/README.md=UTF-8
