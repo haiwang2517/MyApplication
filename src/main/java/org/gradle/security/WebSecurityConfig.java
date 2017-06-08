@@ -1,6 +1,7 @@
 package org.gradle.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,32 +16,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+                .withUser("user").password("password").roles("USER");   //指定用户才可以登录
     }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests()
-				.antMatchers("/bootstrap/**/*","/signlogin","/").permitAll()
+		http.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/bootstrap/**/*","/login","/")
+				.permitAll()
 				.anyRequest().authenticated()
 				.and()
+				
 			.formLogin()
-				.loginPage("/login")
-				.permitAll()
+	            .loginPage("/login")// 登录的界面
+	            .loginProcessingUrl("/home")   //登录成功后调用的 界面
+	            .failureUrl("/login?error")    //登录失败调用的界面
+	            .permitAll()
+	            .successHandler(loginSuccessHandler())
 				.and()
 			.logout()
 				.permitAll();
 		
-		/*
-		 通过@EnableWebSecurity注解开启Spring Security的功能
-		继承WebSecurityConfigurerAdapter，并重写它的方法来设置一些web安全的细节
-		configure(HttpSecurity http)方法
-		通过authorizeRequests()定义哪些URL需要被保护、哪些不需要被保护。例如以上代码指定了/和/home不需要任何认证就可以访问，其他的路径都必须通过身份验证。
-		通过formLogin()定义当需要用户登录时候，转到的登录页面。
-		configureGlobal(AuthenticationManagerBuilder auth)方法，在内存中创建了一个用户，该用户的名称为user，密码为password，用户角色为USER。 
-		*/
-		
 	}
+	
+	@Bean  
+    public LoginSuccessHandler loginSuccessHandler(){  
+        return new LoginSuccessHandler();  
+    }  
 	
 }

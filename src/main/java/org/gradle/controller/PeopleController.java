@@ -28,15 +28,21 @@ public class PeopleController {
 		return dto;
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public String loginMethod(){
 		
 		return "login";
 	}
 	
-	@RequestMapping(value = "/signlogin" , method = RequestMethod.POST)
+	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	public String signLoginMethod(String username , String password){
 		logger.info("用户名: {}  密码:{}", username , password);
-		return "login";
+		return "home";
+	}
+	
+	@RequestMapping(value = "/home" )
+	public String showHome(){
+		logger.info("登录成功sss");
+		return "home";
 	}
 }

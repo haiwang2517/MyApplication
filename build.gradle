@@ -1,9 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 version = '1.0'
-
+webAppDirName = "src/main/webapp"
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
@@ -16,6 +17,7 @@ jar {
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
