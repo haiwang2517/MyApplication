@@ -14,24 +14,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");   //指定用户才可以登录
+        auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");   //指定用户才可以登录
     }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable()
+		http.csrf().disable()   // 禁用 csrf的验证
 			.authorizeRequests()
-				.antMatchers("/bootstrap/**/*","/login","/")
+				.antMatchers("/bootstrap/**/*","/login")
 				.permitAll()
 				.anyRequest().authenticated()
 				.and()
-				
 			.formLogin()
+				.usernameParameter("username")
+	            .passwordParameter("password")
 	            .loginPage("/login")// 登录的界面
-	            .loginProcessingUrl("/home")   //登录成功后调用的 界面
+	            
+	            /*
+	             * 不写loginProcessingUrl的话默认进入/路径对应的方法中
+	             * 写loginProcessingUrl("/login") 也是直接到 / 路径对应的方法中 
+	             * 写loginProcessingUrl("/signlogin") 写一个不存在的或者存在的就会进入Login 提交的后台处理中
+	             * */
+	            .loginProcessingUrl("/signloginabc")   
 	            .failureUrl("/login?error")    //登录失败调用的界面
 	            .permitAll()
 	            .successHandler(loginSuccessHandler())
