@@ -4,7 +4,7 @@
 - Gradle3.5
 
 数据库
-- MySql
+- MySql 5.7
 
 前端技术
 - Bootstrap    
@@ -21,5 +21,11 @@ resources > static > bootstrap
 
 #Spring SL4J    
 > sl4j 日志format输出 logger.info("输出参数1[{}],参数2[{}]", "A","B");   console: "输出参数1A,参数2B"    
+
+#配置MySql连接    
+> 添加 mysql-connector-java:6.0.6         
+> 配置驱动路径的时候要注意 ** com.mysql.jdbc.Driver** 修改为  **com.mysql.cj.jdbc.Driver**     
+> 配置URL jdbc:mysql://localhost:**3306/mydb**?useUnicode=true&characterEncoding=UTF-8&**useSSL=false**&**serverTimezone=UTC**    
+
 
  

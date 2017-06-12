@@ -21,11 +21,11 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
        /* Set<SysRole> roles = userDetails.getSysRoles();*/  
         //输出登录提示信息    
 //        System.out.println("管理员 " + userDetails.getName() + " 登录");    
+		
 		String user = request.getParameter("username");
 		String password = request.getParameter("password");
-        System.out.println("IP :"+getIpAddress(request)+",username:"+user+",password:"+password);
+        System.out.println("IP :"+getIpAddress(request)+",username:"+user+",password:"+password+",url:"+request.getServletPath());
         
-//        super.setDefaultTargetUrl(request.getServletPath());
         super.onAuthenticationSuccess(request, response, authentication);    
     }    
       

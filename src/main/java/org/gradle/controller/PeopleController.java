@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PeopleController {
 	private static Logger logger = LoggerFactory.getLogger(PeopleController.class);
 	
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String firstshow(ModelMap map){
 		System.out.println("******* first index");
 		map.addAttribute("firstRet", "My first project!");
@@ -30,11 +30,11 @@ public class PeopleController {
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public String loginMethod(){
-		
+		System.out.println("login-进入方法");
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login" , method = RequestMethod.POST)
+	@RequestMapping(value = "/signlogin" , method = RequestMethod.POST)
 	public String signLoginMethod(String username , String password){
 		logger.info("用户名: {}  密码:{}", username , password);
 		return "home";
@@ -45,4 +45,28 @@ public class PeopleController {
 		logger.info("登录成功sss");
 		return "home";
 	}
+	
+	@RequestMapping(value = "/test1" )
+	public String test1(){
+		logger.info("test1");
+		return "test1";
+	}
+	
+	@RequestMapping(value = "/test2" )
+	public String test2(){
+		logger.info("test2");
+		return "test2";
+	}
+	
+	/**
+	 * 查询图书列表
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/findBooks")
+	public ResultDTO findBooks(){
+		ResultDTO dto = new ResultDTO<>();
+		dto.success("成功啦");
+		return dto;
+	} 
 }
