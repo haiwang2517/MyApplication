@@ -1,3 +1,11 @@
+allprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+}
+
+
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'war'
@@ -13,6 +21,7 @@ jar {
     }
     from { (configurations.runtime).collect { it.isDirectory() ? it : zipTree(it) } }
 }
+
 
 repositories {
         

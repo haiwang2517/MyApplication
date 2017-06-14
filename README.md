@@ -27,5 +27,16 @@ resources > static > bootstrap
 > 配置驱动路径的时候要注意 ** com.mysql.jdbc.Driver** 修改为  **com.mysql.cj.jdbc.Driver**     
 > 配置URL jdbc:mysql://localhost:**3306/mydb**?useUnicode=true&characterEncoding=UTF-8&**useSSL=false**&**serverTimezone=UTC**    
 
+## JdbcTemplate 使用query传参查询不到数据    
+> 直接写完整的sql语句是可以查询到数据,但是改为 object[]{}传参就不可以啦;  **可能是使用了关键字user作为表明,导致的异常,换做其他表是不存在这个问题的**            
+
+## 返回自定义异常 (导出db/20170614.sql)     
+
+> 用户名不存在:UsernameNotFoundException;     
+> 密码错误:BadCredentialException;     
+> 帐户被锁:LockedException;     
+> 帐户未启动:DisabledException;     
+> 密码过期:CredentialExpiredException;    
+
 
  

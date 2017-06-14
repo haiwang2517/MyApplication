@@ -3,18 +3,28 @@ package org.gradle.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
+	private UserDetailsService userDetailService;
+	
+	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");   //指定用户才可以登录
+        
+//		auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");   //指定用户才可以登录
+		
+		auth.eraseCredentials(false).userDetailsService(userDetailService).passwordEncoder(new ShaPasswordEncoder());
+		//org.springframework.security.core.userdetails.User u = new org.springframework.security.core.userdetails.User("","",null);
+//		ShaPasswordEncoder ss = new ShaPasswordEncoder();
     }
 
 	@Override
@@ -30,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 	            .passwordParameter("password")
 	            .loginPage("/login")// 登录的界面
-	            .loginProcessingUrl("/signlogin").successForwardUrl("/home").defaultSuccessUrl("/index")
+	            .loginProcessingUrl("/login").successForwardUrl("/home").defaultSuccessUrl("/index")
 	            .successHandler(loginSuccessHandler())
 	            .failureUrl("/login?error")    //登录失败调用的界面
 	            .permitAll()

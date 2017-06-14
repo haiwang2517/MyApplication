@@ -34,11 +34,18 @@ public class PeopleController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/signlogin" , method = RequestMethod.POST)
-	public String signLoginMethod(String username , String password){
-		logger.info("用户名: {}  密码:{}", username , password);
-		return "home";
-	}
+//	@RequestMapping(value = "/signlogin" , method = RequestMethod.POST)
+//	public String signLoginMethod(String username , String password){
+//		logger.info("用户名: {}  密码:{}", username , password);
+//		return "home";
+//	}
+	
+//	@RequestMapping(value = "/signlogin" , method = RequestMethod.GET)
+//	public String getLogin(String username , String password){
+//		logger.info("用户名: {}  密码:{}", username , password);
+//		return "home";
+//	}
+	
 	
 	@RequestMapping(value = "/home" )
 	public String showHome(){
