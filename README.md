@@ -7,7 +7,7 @@
 - MySql 5.7
 
 前端技术
-- Bootstrap    
+- Bootstrap 3.3.7    
 > Bootstrap    
 > 优点: 支持HTML5支持绝大多少的浏览器和设备    
 > 缺点: 对IE8以下的浏览器支持不好    

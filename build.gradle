@@ -40,6 +40,10 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security:1.5.3.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-jdbc:1.5.3.RELEASE")
     compile("mysql:mysql-connector-java:6.0.6")
+    
+    //自动包含 hibernate 要应用的包
+    compile('org.springframework.boot:spring-boot-starter-data-jpa:1.5.3.RELEASE')
+    compile('com.alibaba:fastjson:1.2.33')
 }
 
 test {

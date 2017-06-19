@@ -13,7 +13,7 @@ public class MyApplicationRunMain {
 	
 	public static void main (String [] args){
 		
-		SpringApplication.run(MyApplicationRunMain	.class, args);
+		SpringApplication.run(MyApplicationRunMain.class, args);
 	
 	}
 }	
