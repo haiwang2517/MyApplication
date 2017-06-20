@@ -3,7 +3,7 @@ package org.gradle.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,10 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         
 //		auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");   //指定用户才可以登录
-		
-		auth.eraseCredentials(false).userDetailsService(userDetailService).passwordEncoder(new ShaPasswordEncoder());
-		//org.springframework.security.core.userdetails.User u = new org.springframework.security.core.userdetails.User("","",null);
-//		ShaPasswordEncoder ss = new ShaPasswordEncoder();
+		auth.eraseCredentials(false).userDetailsService(userDetailService).passwordEncoder(myPasswordEncoder());
     }
 
 	@Override
@@ -43,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	            .loginProcessingUrl("/login").successForwardUrl("/home").defaultSuccessUrl("/index")
 	            .successHandler(loginSuccessHandler())
 	            .failureUrl("/login?error")    //登录失败调用的界面
+	            
 	            .permitAll()
 				.and()
 			.logout()
@@ -55,4 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginSuccessHandler();  
     }  
 	
+	@Bean
+	public MessageDigestPasswordEncoder myPasswordEncoder(){
+		return new MyPasswordEncoder();
+	}
 }

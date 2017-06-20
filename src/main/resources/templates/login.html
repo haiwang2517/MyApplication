@@ -28,7 +28,7 @@
 	            <input type="checkbox" value="remember-me"> Remember me</input>
 	          </label>
 	        </div>
-	        <div class="param-error" th:if="${param.error}">用户名或密码错</div>
+	        <div class="param-error" th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">用户名或密码错2 </div>
 	        <div class="param-error" th:if="${param.logout}">您已注销成功</div>
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	      </form>

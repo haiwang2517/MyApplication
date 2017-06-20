@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity()
 @Table(name="project_info")
 public class ProjectInfo {
@@ -25,8 +27,9 @@ public class ProjectInfo {
 	@Column(name="code")
 	private String code;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	@Column(name="create_time")
+	@Column(name="create_time",columnDefinition="TIMESTAMP")
 	private Timestamp create_time;
 	
 	@Column(name="content")
